@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk1bgpgodctd5"]
+[gd_scene load_steps=7 format=3 uid="uid://bk1bgpgodctd5"]
 
 [ext_resource type="Script" path="res://scenes/Actors/Player/Player.gd" id="1_44ax6"]
 [ext_resource type="Texture2D" uid="uid://xwiadiatpdop" path="res://assets/sprites/character.png" id="2_x4d6n"]
@@ -15,14 +15,40 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xab0w"]
-size = Vector2(60, 90)
+size = Vector2(30, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1fa6r"]
+size = Vector2(10, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fai5d"]
+size = Vector2(30, 45)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_44ax6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_bmdoe")
 animation = &"idle"
 
 [node name="collisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xab0w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_top_margin = 0.05
+drag_bottom_margin = 0.5
+
+[node name="FrontWallCheck" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontWallCheck"]
+shape = SubResource("RectangleShape2D_1fa6r")
+
+[node name="BackWallCheck" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackWallCheck"]
+shape = SubResource("RectangleShape2D_fai5d")

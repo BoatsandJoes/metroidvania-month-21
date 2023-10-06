@@ -8,11 +8,22 @@ var room: Room
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	room = Room.instantiate()
-	add_child(room)
 	player = Player.instantiate()
 	player.position = Vector2(300, 300)
 	add_child(player)
+	room = Room.instantiate()
+	loadRoom(room)
+
+func loadRoom(room):
+	if self.room != null:
+		remove_child(self.room)
+	self.room = room
+	add_child(room)
+	setCameraParameters()
+	#todo update player.position
+
+func setCameraParameters():
+	player.setCameraParameters(room)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
