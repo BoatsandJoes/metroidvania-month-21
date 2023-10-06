@@ -24,6 +24,7 @@ size = Vector2(10, 45)
 size = Vector2(30, 45)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 3
 script = ExtResource("1_44ax6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -44,11 +45,13 @@ drag_top_margin = 0.05
 drag_bottom_margin = 0.5
 
 [node name="FrontWallCheck" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FrontWallCheck"]
 shape = SubResource("RectangleShape2D_1fa6r")
 
 [node name="BackWallCheck" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BackWallCheck"]
 shape = SubResource("RectangleShape2D_fai5d")
