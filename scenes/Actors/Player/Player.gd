@@ -28,8 +28,10 @@ func _process(delta):
 	pass
 
 func setCameraParameters(room):
-	$Camera2D.limit_bottom = room.cameraHeight
-	$Camera2D.limit_right = room.cameraWidth
+	$Camera2D.limit_top = room.cameraY
+	$Camera2D.limit_left = room.cameraX
+	$Camera2D.limit_bottom = room.cameraY + room.cameraHeight
+	$Camera2D.limit_right = room.cameraX + room.cameraWidth
 
 #Returns true if direction changed
 func face(right: bool) -> bool:
@@ -99,8 +101,10 @@ func _physics_process(delta):
 			if (($BackWallCheck.get_overlapping_bodies().size() > 0 && facingRight)
 			|| ($FrontWallCheck.get_overlapping_bodies().size() > 0 && !facingRight)):
 				x = 500
+				face(true)
 			else:
 				x = -500
+				face(false)
 		elif $BackWallCheck.get_overlapping_bodies().size() > 0:
 			#back
 			jumpTimer.start()
@@ -111,9 +115,9 @@ func _physics_process(delta):
 			jumpTimer.start()
 			y = -1000
 			if facingRight:
-				x = -1300
+				x = -1400
 			else:
-				x = 1300
+				x = 1400
 	elif Input.is_action_just_released("jump"):
 		jumpTimer.stop()
 	if jumpTimer.is_stopped():

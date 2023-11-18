@@ -1,8 +1,10 @@
 extends Node2D
 class_name Room
 
-var cameraWidth = 1280
-var cameraHeight = 1920
+var cameraY = -10000000
+var cameraX = -10000000
+var cameraWidth = 1000000000
+var cameraHeight = 1000000000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
